@@ -7,3 +7,6 @@ Redirecting stdout to a buffer:
     2: buffer contents: '1: wow some text'
     2: closing buffered pipe
     1: printing to stdout again
+
+If you try to write too much without reading you can deadlock.
+Pipe capacity: https://linux.die.net/man/7/pipe
