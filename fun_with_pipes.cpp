@@ -53,8 +53,8 @@ struct buffered_pipe {
 
 
 int main() {
-  PRINT_TO_STREAM(stdout, "writing to stdout\n");
-
+  // stdout example
+  PRINT_TO_STREAM(stdout, "stdout example: creating a buffered pipe of stdout\n");
   buffered_pipe* b = new buffered_pipe(stdout);
   if (b->init()) {
     fprintf(stderr, "problem creating buffered_pipe\n");
@@ -62,14 +62,33 @@ int main() {
     return 1;
   }
 
-  const char* text = "wow some text";
-  PRINT_TO_STREAM(stderr, "printing '%s' to stdout\n", text);
-  PRINT_TO_STREAM(stdout, "%s", text);
+  const char* so_text = "wow some stdout text";
+  PRINT_TO_STREAM(stderr, "printing '%s' to stdout\n", so_text);
+  PRINT_TO_STREAM(stdout, "%s", so_text);
   PRINT_TO_STREAM(stderr, "buffer contents: '%s'\n", b->read());
 
   PRINT_TO_STREAM(stderr, "closing buffered pipe\n");
   delete b;
   PRINT_TO_STREAM(stdout, "printing to stdout again\n");
+
+  // stderr name
+  printf("\n\n");
+  PRINT_TO_STREAM(stderr, "stderr example: creating a buffered pipe on stderr\n");
+  b = new buffered_pipe(stderr);
+  if (b->init()) {
+    fprintf(stderr, "problem creating buffered_pipe\n");
+    delete b;
+    return 1;
+  }
+  const char* se_text = "wow some stderr text";
+  PRINT_TO_STREAM(stdout, "printing '%s' to stderr\n", se_text);
+  PRINT_TO_STREAM(stderr, "%s", se_text);
+  PRINT_TO_STREAM(stdout, "buffer contents: '%s'\n", b->read());
+
+  PRINT_TO_STREAM(stdout, "closing buffered pipe\n");
+  delete b;
+  PRINT_TO_STREAM(stderr, "printing to stderr again\n");
+
 
   return 0;
 }

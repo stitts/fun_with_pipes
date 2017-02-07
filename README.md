@@ -1,4 +1,4 @@
-Redirecting stdout to a buffer:
+Redirecting stdout and stderr to a local buffer:
     
     > g++ fun_with_pipes.cpp
     > ./a.out
